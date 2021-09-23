@@ -1,6 +1,7 @@
 package server;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -30,16 +31,35 @@ public class Bootstrap {
     public void start() throws IOException {
         //浏览器请求localhost:8080返回固定字符串
         ServerSocket serverSocket = new ServerSocket(port);
-        System.out.println("============== Scoket start on port: " + port + " ===============");
+        System.out.println("====================>>>>Scoket start on port: " + port);
 
+//        while (true){
+//            Socket socket = serverSocket.accept();
+//            //请求接收
+//            OutputStream outputStream = socket.getOutputStream();
+//            String data = "hello word";
+//            String responseText = HttpProtocoUtil.successHeader(data.getBytes().length) + data;
+//            outputStream.write(responseText.getBytes());
+//            socket.close();
+//        }
+
+        //封装Resuest和Response对象,返回静态资源文件.
         while (true){
             Socket socket = serverSocket.accept();
+            InputStream inputStream = socket.getInputStream();
             //请求接收
-            OutputStream outputStream = socket.getOutputStream();
-            outputStream.write("hello word".getBytes(StandardCharsets.UTF_8));
+            int count = 0;
+            while (count == 0) {
+                count = inputStream.available();
+            }
+            byte[] bytes = new byte[count];
+            inputStream.read(bytes);
+            System.out.println("====================>>>> request body:" + new String(bytes));
             socket.close();
         }
     }
+
+
 
     /**
      * scoket启动入口
