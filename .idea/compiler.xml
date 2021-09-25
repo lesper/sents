@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="sents-scoket" />
+        <module name="sents-tomcat" />
       </profile>
     </annotationProcessing>
   </component>
