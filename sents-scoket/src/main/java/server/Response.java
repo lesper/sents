@@ -28,7 +28,7 @@ public class Response {
         String absolutePath = StaticResourceUtil.getAbsolutePath(path);
         //输入静态资源文件
         File file = new File(absolutePath);
-        if(file.exists()){
+        if(file.exists() || file.isFile()){
             StaticResourceUtil.outPutStaticResource(new FileInputStream(file),outputStream);
         }else{
             outPut(HttpProtocoUtil.notFoundHeader());
