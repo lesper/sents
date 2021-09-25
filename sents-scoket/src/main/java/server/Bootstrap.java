@@ -47,14 +47,9 @@ public class Bootstrap {
         while (true){
             Socket socket = serverSocket.accept();
             InputStream inputStream = socket.getInputStream();
-            //请求接收
-            int count = 0;
-            while (count == 0) {
-                count = inputStream.available();
-            }
-            byte[] bytes = new byte[count];
-            inputStream.read(bytes);
-            System.out.println("====================>>>> request body:" + new String(bytes));
+            Request request = new Request(inputStream);
+            Response response = new Response(socket.getOutputStream());
+            response.outPutHtml(request.getUrl());
             socket.close();
         }
     }
