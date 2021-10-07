@@ -1,4 +1,4 @@
-package top.latke;
+package top.latke.buffer;
 
 import java.nio.ByteBuffer;
 
