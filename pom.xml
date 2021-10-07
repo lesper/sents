@@ -11,6 +11,7 @@
     <modules>
         <module>sents-scoket</module>
         <module>sents-tomcat</module>
+        <module>sents-nio</module>
     </modules>
 
     <properties>
